@@ -1,0 +1,58 @@
+package Day12;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ISelect;
+import org.openqa.selenium.support.ui.Select;
+
+public class Handling_normal_draft_down_demo {
+
+	private static int i;
+	private static WebElement[] alloptins;
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 driver.get("https://www.opencart.com/index.php?route=account/register");
+		 WebElement drpcountry = driver.findElement(By.xpath("//select[@id='input-country']"));
+		 Select drpButton = new Select(drpcountry);   //select class object used in dropdown its spl case
+		 //selecting option from dropdowm
+		   drpButton.selectByVisibleText("India");
+		   Thread.sleep(5000);
+		 
+		  drpButton.selectByValue("28");
+		  Thread.sleep(3000);
+		 
+		 drpButton.selectByIndex(10);
+		Thread.sleep(3000);
+		 
+		 //finding the number of options
+		 List<WebElement> alloptions = drpButton.getOptions();
+		 System.out.println("total number of options"+ alloptions.size()); //242//
+		 
+		 //capture all the options and print them
+		 //normal for loop
+		 for(int i=0;i<=alloptions.size();i++)
+		 {
+			System.out.println(alloptions.get(i).getText());
+		 }
+		 //foreach loop
+		 for(WebElement option:alloptions)
+		 {
+			 System.out.println(option.getText());
+		 }
+		//select option without using builtin method
+		 for(WebElement option:alloptions)
+		 {
+			 if(option.getText().equals("Iran"))
+			 {
+				 option.click();
+				 break;
+			 }
+		 }
+	}
+
+}
