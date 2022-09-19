@@ -1,0 +1,31 @@
+package day16;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class DragandDrop_demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+		 Actions act= new Actions(driver);
+		 
+		 WebElement rome=driver.findElement(By.id("box6"));
+		 WebElement italy=driver.findElement(By.id("box106"));
+		 
+		 act.dragAndDrop(rome, italy).perform();
+		 
+		  Thread.sleep(5000);
+		 
+		 WebElement wsh=driver.findElement(By.id("box3"));
+		 WebElement us=driver.findElement(By.id("box103"));
+		 
+		 act.dragAndDrop(wsh, us).perform();
+		 
+
+	}
+
+}
