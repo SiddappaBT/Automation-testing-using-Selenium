@@ -11,16 +11,16 @@ public class Css_selector_Locator_Demo {
 		 driver.get("https://www.facebook.com");
 		 
 		 //Tag and id
-		/*driver.findElement(By.cssSelector("input#email")).sendKeys("PentagonSpace@gmail.com");
+		driver.findElement(By.cssSelector("input#email")).sendKeys("PentagonSpace@gmail.com");
 		     // Tag is optional
-		 driver.findElement(By.cssSelector("#email")).sendKeys("PentagonSpace@gmail.com");*/
+		 driver.findElement(By.cssSelector("#email")).sendKeys("PentagonSpace@gmail.com");
 		 
 		 //Tag and class
-		 //driver.findElement(By.cssSelector("input.inputtext")).sendKeys("PentagonSpace@gmail.com");
+		 driver.findElement(By.cssSelector("input.inputtext")).sendKeys("PentagonSpace@gmail.com");
 		 
 		 //Tag and attribute
-		 //driver.findElement(By.cssSelector("[name=email]")).sendKeys("PentagonSpace@gmail.com");
-		 //driver.findElement(By.cssSelector("input[name=email]")).sendKeys("PentagonSpace@gmail.com");
+		 driver.findElement(By.cssSelector("[name=email]")).sendKeys("PentagonSpace@gmail.com");
+		 driver.findElement(By.cssSelector("input[name=email]")).sendKeys("PentagonSpace@gmail.com");
 		 
 		 //tag, class, and attribute
 	driver.findElement(By.cssSelector("input.inputtext[placeholder=\"Email address or phone number\"]")).sendKeys("PentagonSpace@gmail.com");
