@@ -1,0 +1,33 @@
+package Day14;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Handling_Frame_demo3 {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chromedriver", "/driver/chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://demo.automationtesting.in/Frames.html");
+		driver.findElement(By.xpath("/html/body/section/div[1]/div/div/div/div[1]/div/ul/li[2]/a")).click();
+		WebElement outerframe=driver.findElement(By.xpath("//*[@id=\"Multiple\"]/iframe"));
+		driver.switchTo().frame(outerframe); //switch to outer frame
+		
+		WebElement innerframe=driver.findElement(By.xpath("/html/body/section/div/div/iframe"));
+		driver.switchTo().frame(innerframe); //switch to inner frame
+		
+		driver.findElement(By.xpath("/html/body/section/div/div/div/input")).sendKeys("welcome");
+		
+		
+		
+		
+		
+		
+		
+		driver.findElement(By.xpath("/html/body/section/div[1]/div/div/div/div[1]/div/ul/li[2]/a")).click();
+		driver.findElement(By.xpath("This element is in iframe - //input[@type='text']")).sendKeys("welcome");
+
+	}
+
+}
