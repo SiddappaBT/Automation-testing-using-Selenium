@@ -1,0 +1,23 @@
+package day8;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Browser_commands {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 
+		 driver.get("https://opensource-demo.orangehrmlive.com/");
+		 driver.findElement(By.xpath("//*[@id=\"footer\"]/div[1]/a")).click();
+		 
+		 Thread.sleep(10000);
+		 
+		 driver.close();
+		 
+		 driver.quit();
+
+	}
+
+}
