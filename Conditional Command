@@ -1,0 +1,33 @@
+package day8;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class condtional_commandas {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 driver.get("https://demo.nopcommerce.com/register");
+		 
+		 //is displayed method
+		 WebElement searchstore=driver.findElement(By.xpath("//*[@id=\"small-searchterms\"]"));
+		 System.out.println("displayed status:"+searchstore.isDisplayed());
+		 
+		 //is enabled method
+		 System.out.println("Enabled status:"+searchstore.isEnabled());
+		 
+		 //is selected
+		 WebElement male=driver.findElement(By.xpath("//*[@id=\"gender-male\"]"));
+		 WebElement female=driver.findElement(By.xpath("//*[@id=\"gender\"]/span[2]/label"));
+		 male.click();
+		 
+		 System.out.println("selected status:"+male.isSelected());//true
+		 System.out.println("selected status:"+female.isSelected());//false
+		 
+		 
+
+	}
+
+}
