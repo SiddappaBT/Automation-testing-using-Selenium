@@ -1,0 +1,56 @@
+package day22;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Handling_Upload_File_sample {
+
+	public static void main(String[] args) throws AWTException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 driver.get("https://www.monsterindia.com/");
+		 
+		 //approch No1-using sendkeys() method
+		 driver.findElement(By.xpath("//span[@class='uprcse semi-bold']")).click(); 
+		//driver.findElement(By.xpath("//*[@id=\"file-upload\"]")).sendKeys("D:\\my documents\\1st sem Mark's card.pdf"); 
+		 
+		 //approach No-2 robot class
+		 //driver.findElement(By.xpath("//*[@id=\\\"file-upload\\\"]")).click(); //opens window - not working
+		 
+		
+		 JavascriptExecutor js=(JavascriptExecutor)driver; //convert driver instance into javascriptExecutor by typecasting
+		 js.executeScript("arguments(0).click();",driver.findElement(By.xpath("//*[@id=\"file-upload\"]")));
+		 
+		 //put path of file in a clip board
+		 StringSelection ss= new StringSelection("D:\\my documents\\1st sem Mark's card.pdf");
+		 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+		 
+		 //Robot class
+		 Robot rb = new Robot();
+		 rb.delay(300);
+		 
+		 //CTRL V
+		 rb.keyPress(KeyEvent.VK_CONTROL);
+		 rb.keyPress(KeyEvent.VK_V);
+		 
+		 rb.keyRelease(KeyEvent.VK_CONTROL);
+		 rb.keyRelease(KeyEvent.VK_V);
+		 
+		 rb.delay(2000);
+		 
+		 //press enter key
+		 rb.keyPress(KeyEvent.VK_ENTER);
+		 rb.keyRelease(KeyEvent.VK_ENTER);
+		 
+		 
+
+	}
+
+}
