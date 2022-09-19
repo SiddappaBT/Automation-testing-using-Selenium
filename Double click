@@ -1,0 +1,23 @@
+package day16;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Double_click_demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 driver.get("https://api.jquery.com/dblclick/");
+		 
+		 driver.switchTo().frame(driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[1]/article/div/article/div/section/div[2]/div[2]/iframe")));
+         Actions act =new Actions(driver);
+         Thread.sleep(5000);
+         act.doubleClick(driver.findElement(By.xpath("/html/body/div"))).perform();
+	}
+
+	
+	}
+
+
