@@ -1,0 +1,62 @@
+package Day13;
+
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Handling_Broken_Links_Demo {
+
+
+	public static void main(String[] args) throws MalformedURLException {
+		System.setProperty("webdriver.chrome.driver","./browserdrivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 
+         driver.get("http://www.deadlinkcity.com/");
+         driver.manage().window().maximize();
+         List<WebElement> allLinks = driver.findElements(By.tagName("a"));
+         //System.out.println(allLinks.size());
+         
+         //using for each loop
+         int brokenlinks=0;
+         for(WebElement element:allLinks)
+         {
+        	
+			String url=element.getAttribute("href");
+        	 if(url==null || url.isEmpty())
+        	 {
+        		 System.out.println("URL is Empty");
+        	 }
+        		 URL link = new URL(url);
+       
+        		 try
+        		 {
+					HttpURLConnection httpConn=(HttpURLConnection)link.openConnection();
+					httpConn.connect();
+					if(httpConn.getResponseCode()>=400)
+					{
+						System.out.println(httpConn.getResponseCode()+" "+url+" "+"is broken link");
+						brokenlinks++;
+					}
+					else
+					{
+						System.out.println(httpConn.getResponseCode()+" "+url+" "+"is not broken link");
+					}
+				} 
+        		 catch (Exception e)
+        		 {
+				
+				}
+        		 
+        	 }
+         System.out.println("Number of brokenlinks:"+brokenlinks);
+    	 driver.quit();
+         }
+         
+	}
+
+
