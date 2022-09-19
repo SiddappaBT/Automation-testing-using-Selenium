@@ -1,0 +1,76 @@
+package Day11;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebElement;
+
+public class Handling_checkbox_Demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chromedriver", "/driver/chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://itera-qa.azurewebsites.net/home/automation");
+		driver.manage().window().maximize();
+		
+		//1)select the specific check box
+		driver.findElement(By.xpath("//input[@id='monday']")).click();
+		
+		//2)select all the check boxes
+		List<WebElement>checkBoxes=driver.findElements(By.xpath("//input[@type='checkbox' and contains(@id,'day')]"));
+		System.out.println(checkBoxes.size());
+		
+		//using normal for loop
+		for (int i=0;i<checkBoxes.size();i++)
+		{
+			checkBoxes.get(i).click();
+		}
+		
+		//using enhanced for loop
+		for(WebElement ele:checkBoxes)
+		{
+			ele.click();
+		}
+		
+		//3)select multiple checkboxes by choice
+		for(WebElement ele:checkBoxes)
+		{
+			String value=ele.getAttribute("id");
+			if(value.equals("monday")||value.equals("sunday"))
+			{
+				ele.click();
+			}
+		
+		//4)select last 2 check Boxes
+		for(int i= checkBoxes.size()-2; i<checkBoxes.size();i++)
+		{
+			checkBoxes.get(i).click();
+		}
+		
+		//5) select 1st 2 check boxes
+		for(int i=0; i<checkBoxes.size();i++)
+		{
+			if(i<2)
+			{
+				checkBoxes.get(i).click();
+			}
+		}
+		
+		//6)clearing check boxes
+		for(WebElement ele:checkBoxes)
+		{
+			ele.click();
+		}
+		Thread.sleep(5000);
+		for(WebElement ele:checkBoxes)
+		{
+			if(ele.isSelected())
+			{
+				ele.click();
+			}
+		}
+	}
+
+}
