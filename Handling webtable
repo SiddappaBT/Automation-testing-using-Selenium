@@ -1,0 +1,47 @@
+package day23;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Handle_web_table_demo1 {
+
+	public static void main(String[] args) {
+		//1)how many rows in a table?
+		//2)how many column in a table?
+		//3)how to retrieve the specific row/column data
+		//4)retrieve all the data from table
+		
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 ChromeDriver driver = new ChromeDriver();
+		 driver.get("https://www.w3schools.com/html/html_tables.asp");
+		 
+		//1)how many rows in a table?
+		 int rows=driver.findElements(By.xpath("//table[@id='customers']/tbody/tr")).size();
+		 System.out.println("number of rows in a web table:"+rows);
+		 
+		 
+		//2)how many column in a table?
+		 int columns=driver.findElements(By.xpath("//table[@id='customers']/tbody/tr/th")).size();
+		 System.out.println("number of columnss in a webtable:"+columns);
+		 
+		//3)how to retrieve the specific row/column data
+		 String value=driver.findElement(By.xpath("//table[@id='customers']/tbody/tr[4]/td[2]")).getText();
+		 System.out.println("the value is "+value);
+		 
+		//4)retrieve all the data from table
+		 for(int r=2; r<=rows; r++)
+		 {
+			 for(int c=1; c<=columns; c++)
+			 {
+				 value=driver.findElement(By.xpath("//table[@id='customers']/tbody/tr["+r+"]/td["+c+"]")).getText();
+				 System.out.print(value+"                         ");
+			 }
+		 }
+		 
+		 
+		 System.out.println();
+		
+
+	}
+
+}
