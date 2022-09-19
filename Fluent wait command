@@ -1,0 +1,53 @@
+package Day10;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import com.google.common.base.Function;
+
+public class Fluent_wait_demo {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 WebDriver driver = new ChromeDriver();
+		 
+		 
+		 
+		 driver.get("https://www.google.com/");
+		 driver.manage().window().maximize();
+		 
+		 driver.findElement(By.name("q")).sendKeys("selenium");
+		 driver.findElement(By.name("q")).sendKeys(Keys.RETURN);
+		 
+		// Thread.sleep(5000); //method given by java
+		 
+		 driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/a/h3")).click();
+		 
+		// Waiting 30 seconds for an element to be present on the page, checking
+		   // for its presence once every 5 seconds.
+		   Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+		       .withTimeout(Duration.ofSeconds(30))
+		       .pollingEvery(Duration.ofSeconds(5))
+		       .ignoring(NoSuchElementException.class);
+		   //Declaration part of fluent wait
+
+		   WebElement ele = wait.until(new Function<WebDriver, WebElement>() {
+		     public WebElement apply(WebDriver driver) {
+		       return driver.findElement(By.id("By.xpath(\"//*[@id=\\\"rso\\\"]/div[1]/div/div/div/div/div/div/div/div[1]/a/h3\"))"));
+		       //usage part of fluent wait
+		     }
+		   });
+		   ele.click();
+
+
+	}
+
+}
