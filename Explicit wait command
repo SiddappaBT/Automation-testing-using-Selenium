@@ -1,0 +1,36 @@
+package Day10;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class explicitewaitclass {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 WebDriver driver = new ChromeDriver();
+		 
+		 WebDriverWait mywait=new WebDriverWait(driver,Duration.ofSeconds(10)); //declaration path without this we cannot write explicite wait
+		 
+		 
+		 driver.get("https://www.google.com/");
+		 driver.manage().window().maximize();
+		 
+		 driver.findElement(By.name("q")).sendKeys("selenium");
+		 driver.findElement(By.name("q")).sendKeys(Keys.RETURN);
+		 
+		// Thread.sleep(5000); //method given by java
+		 
+ // WebElement ele=mywait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/a/h3")));
+  WebElement ele=mywait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/a/h3")));
+		 ele.click();
+
+	}
+
+}
