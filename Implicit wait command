@@ -1,0 +1,30 @@
+package day9;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Implicit_wait_demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		 WebDriver driver = new ChromeDriver();
+		 
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		 
+		 driver.get("https://www.google.com/");
+		 driver.manage().window().maximize();
+		 
+		 driver.findElement(By.name("q")).sendKeys("selenium");
+		 driver.findElement(By.name("q")).sendKeys(Keys.RETURN);
+		 
+		// Thread.sleep(5000); //method given by java
+		 
+		 driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/a/h3")).click();
+
+	}
+
+}
